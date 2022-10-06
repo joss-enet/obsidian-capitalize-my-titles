@@ -1,24 +1,44 @@
 {
-	"name": "obsidian-sample-plugin",
+	"name": "obsidian-capitalize-my-titles",
 	"version": "1.0.0",
-	"description": "This is a sample plugin for Obsidian (https://obsidian.md)",
+	"description": "Automatically capitalizes titles in Markdown files.",
 	"main": "main.js",
 	"scripts": {
 		"dev": "node esbuild.config.mjs",
 		"build": "tsc -noEmit -skipLibCheck && node esbuild.config.mjs production",
-		"version": "node version-bump.mjs && git add manifest.json versions.json"
+		"commit": "cz",
+		"release": "standard-version && node version-bump.mjs && git add manifest.json versions.json"
 	},
-	"keywords": [],
-	"author": "",
+	"standard-version": {
+		"t": ""
+	},
+	"keywords": [
+		"obsidian",
+		"plugin",
+		"markdown",
+		"title",
+		"capitalize"
+	],
+	"author": "Josselin ENET",
 	"license": "MIT",
 	"devDependencies": {
 		"@types/node": "^16.11.6",
-		"@typescript-eslint/eslint-plugin": "5.29.0",
-		"@typescript-eslint/parser": "5.29.0",
 		"builtin-modules": "3.3.0",
+		"cz-conventional-changelog": "^3.3.0",
 		"esbuild": "0.14.47",
 		"obsidian": "latest",
+		"standard-version": "^9.5.0",
 		"tslib": "2.4.0",
 		"typescript": "4.7.4"
+	},
+	"dependencies": {
+		"@gouch/to-title-case": "^2.2.1",
+		"@types/to-title-case-gouch": "^0.0.28",
+		"commitizen": "^4.2.5"
+	},
+	"config": {
+		"commitizen": {
+			"path": "./node_modules/cz-conventional-changelog"
+		}
 	}
 }
