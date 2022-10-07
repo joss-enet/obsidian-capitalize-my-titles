@@ -17,6 +17,24 @@ export default class CapitalizeMyTitlesPlugin extends Plugin {
 			}
 		});
 
+
+		this.registerEvent(
+			this.app.workspace.on("file-menu", (menu, file) => {
+
+				// Only add this item for Markdown files
+				if (!(file instanceof TFile) || !file.path.endsWith(".md")) return;
+
+				menu.addItem((item) => {
+					item
+						.setTitle(CAPITALIZE_ALL_NAME)
+						.setIcon('heading-glyph')
+						.onClick(() => {
+							capitalizeAllTitles(file);
+						});
+				});
+			})
+		);
+
 	}
 }
 
